@@ -50,8 +50,7 @@ async function nominatimReverse(lat, lon) {
   const res = await fetch(url, {
     headers: {
       Accept: "application/json",
-      // Idealnya ganti dengan domain/app kamu untuk produksi
-      "User-Agent": "MapPicker/1.0 (yourdomain.com)",
+      "User-Agent": "MapPicker/1.0 (local.host)",
     },
   });
   if (!res.ok) throw new Error("Reverse geocode failed");
@@ -89,7 +88,6 @@ export default function MapPicker({ value, onChange }) {
     value?.lat && value?.lng ? { lat: value.lat, lng: value.lng } : defaultCenter
   );
 
-  // --- SEARCH STATE ---
   const [query, setQuery] = useState("");
   const debouncedQuery = useDebounce(query, 450);
   const [results, setResults] = useState([]);
@@ -101,7 +99,6 @@ export default function MapPicker({ value, onChange }) {
     if (value?.lat && value?.lng) setPos({ lat: value.lat, lng: value.lng });
   }, [value?.lat, value?.lng]);
 
-  // Close dropdown when click outside
   useEffect(() => {
     const onDocClick = (e) => {
       if (!rootRef.current) return;
@@ -111,7 +108,7 @@ export default function MapPicker({ value, onChange }) {
     return () => document.removeEventListener("mousedown", onDocClick);
   }, []);
 
-  // Fetch autocomplete results
+
   useEffect(() => {
     const q = debouncedQuery.trim();
     if (q.length < 3) {
@@ -125,7 +122,6 @@ export default function MapPicker({ value, onChange }) {
       try {
         setLoading(true);
 
-        // countrycodes: "id" => Indonesia saja, set "" jika mau global
         const data = await nominatimSearch(q, { limit: 8, countrycodes: "id", acceptLanguage: "id" });
 
         if (!cancelled) {
@@ -177,7 +173,6 @@ export default function MapPicker({ value, onChange }) {
 
     commitChange(lat, lng, address);
 
-    // set input & close
     setQuery(address);
     setOpen(false);
   };
@@ -198,7 +193,6 @@ export default function MapPicker({ value, onChange }) {
 
   return (
     <div className="rounded-4 border p-2" ref={rootRef} style={{ position: "relative" }}>
-      {/* SEARCH BAR */}
       <form onSubmit={handleSubmitSearch} className="d-flex gap-2 mb-2">
         <input
           className="form-control"
@@ -212,7 +206,6 @@ export default function MapPicker({ value, onChange }) {
         </button>
       </form>
 
-      {/* DROPDOWN RESULTS */}
       {open && (results.length > 0 || loading) ? (
         <div
           className="shadow-sm"
