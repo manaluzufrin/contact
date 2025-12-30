@@ -22,6 +22,7 @@ Aplikasi ini dibangun menggunakan **ReactJS** dengan **LeafletJS** dan **OpenStr
 - Bootstrap
 - Font Awesome
 
-### Default admin
+### Default User admin
+Untuk pengelolaan awal dapat menggunakan default user-login admin berikut.
 - Email: root@local.host
 - Password: password
