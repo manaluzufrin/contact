@@ -4,7 +4,10 @@ CONTACT merupakan aplikasi sederhana untuk mengelola data kontak yang berisi nam
 
 Aplikasi ini dibangun menggunakan **ReactJS** dengan **LeafletJS** dan **OpenStreetMap** sebagai penanda lokasi (map pin). Untuk tampilan antarmuka, aplikasi ini menggunakan **Bootstrap** dan **Font Awesome** agar memberikan pengalaman pengguna yang ramah dan intuitif.
 
+
 ## Fitur
+- Mendaftarkan User Login
+- User Login Management
 - Menambahkan data kontak
 - Menyimpan nama, nomor telepon, dan email
 - Menentukan lokasi kontak melalui peta (pin location)
@@ -18,3 +21,7 @@ Aplikasi ini dibangun menggunakan **ReactJS** dengan **LeafletJS** dan **OpenStr
 - OpenStreetMap
 - Bootstrap
 - Font Awesome
+
+###Default admin
+Email: root@local.host
+Password: password
