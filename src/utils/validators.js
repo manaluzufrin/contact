@@ -46,3 +46,27 @@ export function validateContact({ name, phone, email, location, file }) {
 
   return errors;
 }
+
+export function validateUser({ email, password, isEdit }) {
+  const errors = {};
+  if (!email?.trim()) errors.email = "Email wajib diisi.";
+  else if (!isEmail(email)) errors.email = "Format email tidak valid.";
+
+  // For edit: password is optional, but if filled must be min length
+  if (!isEdit) {
+    if (!password) errors.password = "Password wajib diisi.";
+    else if (password.length < 6) errors.password = "Password minimal 6 karakter.";
+  } else {
+    if (password && password.length < 6) errors.password = "Password minimal 6 karakter.";
+  }
+
+  return errors;
+}
+
+export function validateChangePassword({ oldPassword, newPassword }) {
+  const errors = {};
+  if (!oldPassword) errors.oldPassword = "Password lama wajib diisi.";
+  if (!newPassword) errors.newPassword = "Password baru wajib diisi.";
+  else if (newPassword.length < 6) errors.newPassword = "Password baru minimal 6 karakter.";
+  return errors;
+}

@@ -193,18 +193,31 @@ export default function MapPicker({ value, onChange }) {
 
   return (
     <div className="rounded-4 border p-2" ref={rootRef} style={{ position: "relative" }}>
-      <form onSubmit={handleSubmitSearch} className="d-flex gap-2 mb-2">
-        <input
-          className="form-control"
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
-          onFocus={() => results.length && setOpen(true)}
-          placeholder="Cari tempat… (min 3 huruf)"
-        />
-        <button className="btn btn-primary" type="submit" disabled={loading}>
-          {loading ? "..." : "Search"}
-        </button>
+      <form onSubmit={handleSubmitSearch} className="mb-2">
+        <div className="input-group">
+          <input
+            className="form-control"
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            onFocus={() => results.length && setOpen(true)}
+            placeholder="Cari lokasi ..."
+          />
+
+          <button
+            className="btn btn-primary"
+            type="submit"
+            disabled={loading}
+            aria-label="Search"
+          >
+            {loading ? (
+              <span className="spinner-border spinner-border-sm"></span>
+            ) : (
+              <i className="fa fa-search"></i>
+            )}
+          </button>
+        </div>
       </form>
+
 
       {open && (results.length > 0 || loading) ? (
         <div
