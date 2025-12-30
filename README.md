@@ -23,5 +23,5 @@ Aplikasi ini dibangun menggunakan **ReactJS** dengan **LeafletJS** dan **OpenStr
 - Font Awesome
 
 ###Default admin
-Email: root@local.host
-Password: password
+- Email: root@local.host
+- Password: password
